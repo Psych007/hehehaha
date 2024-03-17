@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-image: url(bg.jpeg); /* Update the path to your background image */
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 1.3rem 10%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0, 0, 0, .1);
+            backdrop-filter: blur(50px);
+            z-index: -1;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .4), transparent);
+            transition: .5s;
+        }
+
+        header:hover::after {
+            left: 100%;
+        }
+
+        .logo {
+            font-size: 2rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .navbar a {
+            font-size: 1.15rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 2.5rem;
+        }
+
+        #check {
+            display: none;
+        }
+
+        .icons {
+            position: absolute;
+            font-size: 2.8rem;
+            color: white;
+            cursor: pointer;
+            display: none;
+            right: 5%;
+        }
+
+        @media (max-width: 992px) {
+            header {
+                padding: 1.3rem 5%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .icons {
+                display: inline-flex;
+            }
+
+            #check:checked~.icons #menu-icon {
+                display: none;
+            }
+
+            .icons #close-icon {
+                display: none;
+            }
+
+            #check:checked~.icons #close-icon {
+                display: inline-flex;
+            }
+
+            .navbar {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgb(0, 0, 0, .1);
+                overflow: hidden;
+                transition: .3s ease;
+                height: 0;
+            }
+
+            #check:checked~.navbar {
+                height: 17.7rem;
+            }
+
+            .navbar a {
+                display: block;
+                font-size: 1.1rem;
+                margin: 1.5rem 0;
+                text-align: center;
+                transform: translateY(-50px);
+                transition: .3s ease;
+            }
+
+            #check:checked~.navbar a {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">Logo</a>
+        <input type="checkbox" id="check">
+        <label for="check" class="icons">
+            <i class="fa fa-bars" id="menu-icon"></i>
+            <i class="fa fa-times" id="close-icon">x</i>
+        </label>
+        <nav class="navbar">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Service</a>
+            <a href="#">Contact us</a>
+        </nav>
+    </header>
+</body>
+
+</html>
